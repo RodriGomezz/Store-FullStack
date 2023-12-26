@@ -1,0 +1,246 @@
+:host {
+  height: 100vh;
+  display: block;
+  box-sizing: border-box;
+  background-color: #eee;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.adminLogin {
+  position: absolute;
+  top: 0;
+  margin-top: 50px;
+  color: #fd4b41;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  border-radius: 21px;
+  min-height: 80%;
+  min-width: 95%;
+  box-shadow: 0 20px 20px 10px rgba(0, 0, 0, 0.2);
+}
+
+.forgotPasswordCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 200px;
+  background-color: #fff;
+  border-radius: 21px;
+  height: 80%;
+  min-width: 50%;
+  box-shadow: 0 20px 20px 10px rgba(0, 0, 0, 0.2);
+}
+
+.forgotPasswordContainer {
+  display: flex;
+}
+
+.forgotPassword {
+  cursor: pointer;
+}
+
+.emailContainer {
+  max-width: 350px;
+}
+
+.containerLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  gap: 20px;
+}
+
+.containerSignup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 50%;
+  background: linear-gradient(to top left, #fe566c, #fd4b41);
+  border-radius: 0 21px 21px 0;
+  color: #fff;
+}
+
+.animationSignUp {
+  animation: signUp 1s ease-in-out;
+  transform: translateX(-100%);
+  border-radius: 21px 0 0 21px;
+}
+.animationSignUp * {
+  animation: opacityFormsDisable 1.1s ease-in-out;
+}
+
+@keyframes signUp {
+  0% {
+    transform: translateX(0%);
+    border-radius: 0 21px 21px 0;
+  }
+
+  100% {
+    transform: translateX(-100%);
+    border-radius: 21px 0 0 21px;
+  }
+}
+.disabled {
+  animation: opacityFormsDisable 1s ease-in-out;
+  opacity: 0;
+}
+
+@keyframes opacityFormsDisable {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.active * {
+  animation: opacityFormsActive 0.5s ease-in-out;
+}
+
+@keyframes opacityFormsActive {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animationSignIn {
+  animation: signIn 1.01s ease-in-out;
+}
+.animationSignIn * {
+  animation: opacityFormsDisable 1.1s ease-in-out;
+}
+
+@keyframes signIn {
+  0% {
+    transform: translateX(0%);
+    border-radius: 21px 0 0 21px;
+  }
+  100% {
+    transform: translateX(100%);
+    border-radius: 0 21px 21px 0;
+  }
+}
+
+.signupTitle {
+  font-size: 40px;
+}
+
+mat-form-field {
+  width: 350px;
+}
+
+.containerSignup1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 50%;
+}
+
+.containerLogin1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  order: -1;
+  z-index: 1;
+  color: #fff;
+  background: linear-gradient(to top left, #fe566c, #fd4b41);
+  border-radius: 21px 0 0 21px;
+  width: 50%;
+  gap: 30px;
+}
+
+.loginTitle {
+  font-size: 40px;
+  padding-top: 300px;
+}
+
+.btn,
+.signInBtn,
+.signUpBtn {
+  color: white;
+  border: 2px solid #fff;
+  border-radius: 100px;
+  width: 130px;
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #fe566c;
+  }
+}
+
+.btnSmallWindow {
+  display: none;
+}
+
+.signInBtn,
+.signUpBtn {
+  border: none;
+}
+
+.signUpBtn {
+  border-radius: 100px;
+  width: 130px;
+}
+
+.error {
+  color: red;
+}
+
+.haveAccount {
+  display: none;
+}
+
+.errorNewPassword {
+  padding-top: 20px;
+}
+
+@media (max-width: 1000px) {
+  .display {
+    display: none;
+  }
+  .active {
+    width: 100%;
+  }
+  mat-form-field {
+    max-width: 90%;
+  }
+
+  .btnSmallWindow {
+    display: block;
+    color: white;
+    border: 2px solid #fff;
+    border-radius: 100px;
+    width: 130px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fe566c;
+  }
+
+  .haveAccount {
+    display: block;
+    margin: 20px 0 0 0;
+  }
+}

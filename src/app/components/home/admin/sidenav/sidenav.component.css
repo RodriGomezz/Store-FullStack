@@ -1,0 +1,72 @@
+.sidenavContainer {
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  gap: 50px;
+  font-size: 21px;
+  color: #fff;
+  box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  gap: 40px;
+}
+
+.options {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  width: 200px;
+  gap: 10px;
+  margin-left: 50px;
+  transform: scale(1.2);
+}
+
+.hamburgerBtn {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .hideSideNav {
+    display: none;
+  }
+
+  .showSideNav {
+    display: flex;
+    padding-top: 200px;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    overflow-y: hidden !important;
+  }
+
+  .hamburgerBtn {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    border: none;
+    background-color: #555;
+    border-radius: 12px;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    &:hover {
+      background-color: #777;
+    }
+  }
+}

@@ -1,0 +1,145 @@
+.adminContainer {
+  display: flex;
+  justify-content: center;
+  margin-left: 250px;
+}
+
+.sidenavContainer {
+  background-color: #555;
+  width: 250px;
+  height: 100%;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.btn {
+  display: flex;
+  border: none;
+  background-color: #555;
+  border-radius: 12px;
+  color: #fff;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #777;
+  }
+}
+
+.deleteBtn:hover {
+  color: red;
+}
+
+.adminBtns {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.productList {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  margin: 50px 0;
+}
+
+.card {
+  width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+}
+
+.containerImages {
+  height: 200px;
+  width: 250px;
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardImg {
+  max-height: 200px;
+  max-width: 250px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.cardTitle {
+  cursor: pointer;
+}
+
+.atcBtn {
+  border: none;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 100px;
+  padding: 10px 15px;
+}
+
+.ratingAndPrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.price {
+  font-size: 24px;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+}
+
+.atcBtn:hover {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-left: 250px;
+}
+
+.disableElement {
+  opacity: 0.5;
+  position: relative;
+}
+
+.disabledItem {
+  position: absolute;
+  color: red;
+  font-size: 21px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  filter: invert();
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+  background-color: #777;
+  border-radius: 50%;
+}
+
+@media (max-width: 1000px) {
+  .adminContainer {
+    margin-left: 0;
+  }
+}

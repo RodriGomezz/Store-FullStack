@@ -1,0 +1,62 @@
+.userContainer {
+  display: flex;
+  justify-content: center;
+  min-height: 90vh;
+}
+
+.salesContainer {
+  display: flex;
+}
+
+.salesInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 21px;
+  color: #fff;
+  padding: 0 20px 0 20px;
+}
+
+.userElement {
+  width: 300px;
+  text-align: center;
+}
+
+.admin-sales {
+  margin: 100px;
+  width: 100%;
+  height: 80%;
+  background-color: #333;
+  color: #fff;
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
+  margin-left: 350px;
+}
+
+.productsBought {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & * {
+    width: 300px;
+    text-align: center;
+  }
+}
+
+.imgElement {
+  width: 50px;
+}
+
+.imgBought {
+  width: 50px;
+}
+
+.accordion {
+  margin-top: 20px;
+}
+
+.direction {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}

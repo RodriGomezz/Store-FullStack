@@ -1,0 +1,108 @@
+<section class="productList">
+  <div *ngIf="spinner"><app-spinner></app-spinner></div>
+  <mat-card
+    class="card"
+    *ngFor="let item of items"
+    [ngClass]="{ disableCard: response[item].active == 'false' }"
+  >
+    <div
+      [attr.id]="'carouselExample' + item"
+      class="carousel slide carousel-fade"
+    >
+      <div class="carousel-inner" *ngIf="response[item].image1">
+        <div class="carousel-item active containerImages">
+          <img
+            src="{{ response[item].image1 }}"
+            class="d-block w-100 cardImg"
+            (click)="productDetails(item)"
+            alt="img1"
+          />
+        </div>
+        <div class="carousel-item" *ngIf="response[item].image2">
+          <img
+            src="{{ response[item].image2 }}"
+            class="d-block w-100 cardImg"
+            (click)="productDetails(item)"
+            alt="img2"
+          />
+        </div>
+        <div class="carousel-item" *ngIf="response[item].image3">
+          <img
+            src="{{ response[item].image3 }}"
+            class="d-block w-100 cardImg"
+            (click)="productDetails(item)"
+            alt="img3"
+          />
+        </div>
+      </div>
+      <button
+        *ngIf="response[item].image2 || response[item].image3"
+        class="carousel-control-prev"
+        type="button"
+        [attr.data-bs-target]="'#carouselExample' + item"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        *ngIf="response[item].image2 || response[item].image3"
+        class="carousel-control-next"
+        type="button"
+        [attr.data-bs-target]="'#carouselExample' + item"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="productContainer">
+      <div>
+        <mat-card-title class="cardTitle" (click)="productDetails(item)">{{
+          response[item].title | title
+        }}</mat-card-title>
+
+        <p>{{ response[item].description | fiveWords }}...</p>
+      </div>
+      <div class="ratingAndPrice">
+        <span class="price">{{ response[item].price | currency }}</span>
+        <div class="ratingContainer">
+          <span
+            *ngFor="
+              let starts of [].constructor(
+                math.trunc(response[item].rating.rate)
+              )
+            "
+          >
+            <mat-icon class="ratingContainer">star</mat-icon>
+          </span>
+          <span
+            *ngIf="
+              [].constructor(
+                Number(response[item].rating.rate)
+                  .toString()
+                  .split('.')
+                  .splice(1, 1)
+              ) != 0
+            "
+          >
+            <mat-icon class="ratingContainer">star_half</mat-icon>
+          </span>
+          <span class="countRating">{{ response[item].rating.count }}</span>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</section>
+
+<mat-paginator
+  class="paginator"
+  [length]="elements"
+  [pageIndex]="pageIndex"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 50, 100]"
+  aria-label="Select page"
+  (page)="handlePageEvent($event)"
+  #paginator
+>
+</mat-paginator>

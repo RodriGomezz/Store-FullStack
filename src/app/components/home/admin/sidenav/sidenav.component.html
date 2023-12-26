@@ -1,0 +1,23 @@
+<button *ngIf="!activeBtn" class="hamburgerBtn" (click)="hamburgerBtn()">
+  <mat-icon>menu</mat-icon>
+</button>
+
+<section
+  class="sidenavContainer"
+  [ngClass]="{ showSideNav: activeBtn, hideSideNav: !activeBtn }"
+>
+  <div class="optionsContainer">
+    <span class="options" routerLink="">
+      <mat-icon>store</mat-icon> Home Page</span
+    >
+    <span class="options" (click)="onProducts()">
+      <mat-icon>local_mall</mat-icon> Products</span
+    >
+    <span class="options" (click)="onUsers()"
+      ><mat-icon>account_circle</mat-icon> Users</span
+    >
+    <span class="options" (click)="onSales()"
+      ><mat-icon>shopping_basket</mat-icon> Orders</span
+    >
+  </div>
+</section>

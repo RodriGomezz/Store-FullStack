@@ -1,0 +1,69 @@
+<div *ngIf="productDetails" class="containerProduct">
+  <div class="imgContainer">
+    <div *ngIf="isLoading"><app-spinner></app-spinner></div>
+    <div class="containerSmallImgs">
+      <div
+        class="containerImgs"
+        *ngIf="productDetails.image2 || productDetails.image3"
+      >
+        <img
+          class="smallImgs"
+          (click)="imgClicked(productDetails.image1)"
+          src="{{ productDetails.image1 }}"
+          alt=""
+        />
+      </div>
+      <div class="containerImgs" *ngIf="productDetails.image2">
+        <img
+          class="smallImgs"
+          (click)="imgClicked(productDetails.image2)"
+          src="{{ productDetails.image2 }}"
+          alt=""
+        />
+      </div>
+      <div class="containerImgs" *ngIf="productDetails.image3">
+        <img
+          class="smallImgs"
+          (click)="imgClicked(productDetails.image3)"
+          src="{{ productDetails.image3 }}"
+          alt=""
+        />
+      </div>
+    </div>
+    <img class="img" src="{{ imgSelected }}" alt="" />
+    <section class="details">
+      <h1>{{ productDetails.title }}</h1>
+      <div class="ratingContainer">
+        <span
+          *ngFor="
+            let starts of [].constructor(math.trunc(productDetails.rating.rate))
+          "
+        >
+          <mat-icon class="ratingContainer">star</mat-icon>
+        </span>
+        <span
+          *ngIf="
+            [].constructor(
+              Number(productDetails.rating.rate)
+                .toString()
+                .split('.')
+                .splice(1, 1)
+            ) != 0
+          "
+        >
+          <mat-icon class="ratingContainer">star_half</mat-icon>
+        </span>
+        <span class="countRating">{{ productDetails.rating.count }}</span>
+      </div>
+      <p>{{ productDetails.description }}</p>
+      <p>${{ productDetails.price }}</p>
+      <div class="quantityOfItems">
+        <span class="arrow" (click)="leftArrow()">-</span>
+        <span>{{ countItems() }}</span>
+        <span class="arrow" (click)="rightArrow()">+</span>
+      </div>
+      <button class="btn" (click)="buyNow()">Buy Now</button>
+      <button class="addToCart btn" (click)="addToCart()">Add to Cart</button>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+<h2 class="title" mat-dialog-title>Add Product</h2>
+<div class="addProductForm" mat-dialog-content>
+  <div class="d-flex justify-content-center">
+    <form #form="ngForm">
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Item</mat-label>
+          <input matInput [(ngModel)]="product.title" name="item" required />
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            [(ngModel)]="product.description"
+            name="description"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Price</mat-label>
+          <input
+            matInput
+            [(ngModel)]="product.price"
+            name="description"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Image1 url</mat-label>
+          <input matInput [(ngModel)]="product.image1" name="image1" required />
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Image2 url</mat-label>
+          <input matInput [(ngModel)]="product.image2" name="image2" />
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Image3 url</mat-label>
+          <input matInput [(ngModel)]="product.image3" name="image3" />
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Rating rate</mat-label>
+          <input matInput [(ngModel)]="product.rating.rate" name="rate" />
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Rating count</mat-label>
+          <input matInput [(ngModel)]="product.rating.count" name="count" />
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>category</mat-label>
+          <mat-select
+            [(ngModel)]="product.category"
+            name="options"
+            class="position-relative"
+            required
+            ><mat-option value="men's clothing">men's clothing</mat-option
+            ><mat-option value="jewelry">jewelry</mat-option
+            ><mat-option value="electronics">electronics</mat-option>
+            ><mat-option value="women's clothing">women's clothing</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Item active?</mat-label>
+          <mat-select
+            [(ngModel)]="product.active"
+            name="options"
+            class="position-relative"
+            required
+            ><mat-option value="true">Yes</mat-option> ><mat-option
+              value="false"
+              >No</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="btnsContainer" mat-dialog-actions>
+  <button class="btn" mat-button [mat-dialog-close]="true">Close</button>
+  <button
+    class="btn"
+    mat-raised-button
+    mat-dialog-close
+    cdkFocusInitial
+    color="primary"
+    (click)="addProduct()"
+    type="submit"
+    [disabled]="!form.valid"
+  >
+    Save Product
+  </button>
+</div>

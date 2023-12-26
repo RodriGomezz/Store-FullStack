@@ -1,0 +1,186 @@
+<mat-stepper labelPosition="bottom" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template class="stepLabel" matStepLabel>Review Items</ng-template>
+      <div class="containerCart">
+        <section class="productList">
+          <mat-card
+            class="card"
+            *ngFor="let item of items"
+            [ngClass]="{ deleteAnimation: item === deletedItem }"
+          >
+            <div class="containerImg">
+              <img
+                (click)="productDetailsCart(item)"
+                class="cardImg"
+                mat-card-image
+                src="{{ this.storageItems[item].product.image1 }}"
+                alt="Photo of item"
+              />
+            </div>
+            <mat-card-title
+              class="cardTitle"
+              (click)="productDetailsCart(item)"
+              >{{ this.storageItems[item].product.title }}</mat-card-title
+            >
+            <mat-card-content class="cardContent">
+              <p>{{ this.storageItems[item].product.price | currency }}</p>
+              <div class="quantityOfItems">
+                <span class="arrow" (click)="leftArrow(item)"><</span>
+                <span>{{ this.storageItems[item].items }}</span>
+                <span class="arrow" (click)="rightArrow(item)">></span>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button class="deleteBtn" (click)="deleteItem(item)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </section>
+
+        <!----------------- Summary Section ----------------->
+
+        <mat-card class="Summary">
+          <section class="productSummery">
+            <h1>Product Summary</h1>
+            <div class="prices">
+              <p>SubTotal:</p>
+              <span>{{ price() | currency }}</span>
+            </div>
+            <div class="prices">
+              <p>Shopping fee:</p>
+              <span>$9.99</span>
+            </div>
+            <hr />
+            <div class="prices totalPrice">
+              <p>Total:</p>
+              <span> {{ price() + 9.99 | currency }}</span>
+            </div>
+            <input class="couponInput" type="text" placeholder="Apply Coupon" />
+            <div>
+              <button
+                *ngIf="price() != 0"
+                mat-button
+                class="btn"
+                matStepperNext
+              >
+                Next
+              </button>
+              <p class="text-danger" *ngIf="price() === 0">
+                You must buy something to continue.
+              </p>
+            </div>
+          </section>
+        </mat-card>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step optional>
+    <div class="containerForm">
+      <div>
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <form class="formInput" #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <mat-form-field>
+            <mat-label>Address Line 1</mat-label>
+            <input
+              matInput
+              placeholder="Ex. 1 Main St, New York, NY"
+              ngModel
+              name="address1"
+              #address1Input="ngModel"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Address Line 2</mat-label>
+            <input
+              matInput
+              ngModel
+              name="address2"
+              #address2Input="ngModel"
+              placeholder="Ex. 1 Main St, New York, NY"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Apartment, suit, etc</mat-label>
+            <input
+              matInput
+              name="apartment"
+              ngModel
+              #apartmentInput="ngModel"
+              placeholder="Ex. 1 Main St, New York, NY"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input
+              matInput
+              name="city"
+              ngModel
+              #cityInput="ngModel"
+              placeholder="Ex. 1 Main St, New York, NY"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input
+              matInput
+              name="country"
+              ngModel
+              #countryInput="ngModel"
+              placeholder="Ex. 1 Main St, New York, NY"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Postal code</mat-label>
+            <input
+              matInput
+              name="postalCode"
+              ngModel
+              #postalCodeInput="ngModel"
+              placeholder="Ex. 1 Main St, New York, NY"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Telephone</mat-label>
+            <input
+              matInput
+              name="telephone"
+              ngModel
+              #telephoneInput="ngModel"
+              placeholder="Ex. 1 Main St, New York, NY"
+              required
+            />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button
+              mat-button
+              matStepperNext
+              type="submit"
+              [disabled]="f.invalid"
+            >
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <div class="doneContainer">
+      <p class="doneCenter">
+        Thank you for you order. <mat-icon class="doneIcon">done</mat-icon>
+      </p>
+      <div>
+        <button (click)="homePage()" mat-button>Go to home page</button>
+      </div>
+    </div>
+  </mat-step>
+</mat-stepper>

@@ -1,0 +1,62 @@
+<header>
+  <nav class="navbar" *ngIf="showNavbar">
+    <img class="imgLogo" src="" alt="Logo" routerLink="" (click)="homePage()" />
+    <div class="search">
+      <form class="example-form">
+        <input
+          class="inputSearch"
+          (keyup.enter)="searchButton()"
+          (input)="searchAutocomplete()"
+          [(ngModel)]="searchInput"
+          type="text"
+          placeholder="Search for an item"
+          aria-label="Number"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </form>
+      <button class="searchBtn" (click)="searchButton()">
+        <mat-icon fontIcon="search"></mat-icon>
+      </button>
+    </div>
+
+    <!--  -->
+    <div class="links">
+      <a
+        *ngIf="isAdmin == 'admin'"
+        routerLink="/admin/products"
+        (click)="onAdmin()"
+        >Admin</a
+      >
+      <mat-icon>account_circle</mat-icon>
+      <mat-icon
+        class="shoppingCart"
+        routerLink="/cart"
+        matBadge="{{ itemsToCart }}"
+        matBadgeColor="warn"
+        >shopping_cart</mat-icon
+      >
+
+      <a (click)="onLogin()" *ngIf="!existUser" class="login" routerLink="/auth"
+        >Login</a
+      >
+      <a
+        (click)="onSignup()"
+        *ngIf="!existUser"
+        class="signup"
+        routerLink="/auth"
+        >SingUp</a
+      >
+      <a *ngIf="existUser" class="logout" (click)="onLogout()">Logout</a>
+    </div>
+  </nav>
+</header>

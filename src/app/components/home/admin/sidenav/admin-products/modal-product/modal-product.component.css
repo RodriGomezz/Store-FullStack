@@ -1,0 +1,33 @@
+.title {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.example-container * {
+  width: 350px;
+}
+
+.addProductForm {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btnsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 30px;
+}
+
+.btn {
+  background-color: #333;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  padding: 10px 20px;
+  &:hover {
+    cursor: pointer;
+    background-color: #555;
+  }
+}

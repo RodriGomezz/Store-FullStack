@@ -1,0 +1,53 @@
+<div class="carouselContainer">
+  <app-carousel></app-carousel>
+</div>
+
+<div class="categories">
+  <div class="categoryAndText">
+    <span
+      (click)="selectedCategory('all')"
+      class="material-symbols-outlined iconCategory"
+      >select_all</span
+    >
+    <p>All</p>
+  </div>
+  <div class="categoryAndText">
+    <span
+      (click)="selectedCategory('mens clothing')"
+      class="material-symbols-outlined iconCategory"
+      >styler</span
+    >
+    <p>Men Clothing</p>
+  </div>
+  <div class="categoryAndText">
+    <span
+      (click)="selectedCategory('womens clothing')"
+      class="material-symbols-outlined iconCategory"
+      >checkroom</span
+    >
+    <p>Woman Clothing</p>
+  </div>
+  <div class="categoryAndText">
+    <span
+      (click)="selectedCategory('electronics')"
+      class="material-symbols-outlined iconCategory"
+      >devices</span
+    >
+    <p>Electronics</p>
+  </div>
+  <div class="categoryAndText">
+    <span
+      (click)="selectedCategory('jewelry')"
+      class="material-symbols-outlined iconCategory"
+      >diamond</span
+    >
+    <p>jewelry</p>
+  </div>
+</div>
+
+<app-products [selectedCategory]="this.data"></app-products>
+
+<!-- <app-admin-products
+
+  [selectedCategory]="this.data"
+></app-admin-products> -->

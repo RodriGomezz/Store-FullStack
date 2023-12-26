@@ -1,0 +1,45 @@
+<app-sidenav></app-sidenav>
+<div class="userContainer">
+  <div class="admin-users">
+    <div class="userInfo">
+      <span class="userElement">Name</span>
+      <span class="userElement">Email</span>
+      <span class="userElement">Role</span>
+      <button class="hidden">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <hr class="hrUserInfo" />
+    <div class="spinner" *ngIf="isLoading">
+      <app-spinner></app-spinner>
+    </div>
+    <div
+      *ngFor="let user of users"
+      [ngClass]="{ deleteUser: response.users[user].hide === true }"
+    >
+      <div class="user">
+        <span class="userElement"> {{ response.users[user].name }} </span>
+        <span class="userElement"> {{ response.users[user].email }} </span>
+        <span
+          class="userElement"
+          [ngClass]="{ roleAdmin: response.users[user].role === 'admin' }"
+          >{{ response.users[user].role }}</span
+        >
+        <button
+          [ngClass]="{ deleteUser: response.users[user].role === 'admin' }"
+          class="deleteBtn"
+          (click)="onDelete(user)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button
+          *ngIf="response.users[user].role === 'admin'"
+          [ngClass]="{ hidden: response.users[user].role === 'admin' }"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <hr />
+    </div>
+  </div>
+</div>

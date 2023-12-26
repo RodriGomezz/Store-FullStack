@@ -1,0 +1,89 @@
+<app-sidenav></app-sidenav>
+<div class="userContainer">
+  <div class="admin-sales">
+    <div class="salesInfo">
+      <span class="userElement imgElement">Img</span>
+      <span class="userElement">Title</span>
+      <span class="userElement">price</span>
+      <span class="userElement">quantity</span>
+    </div>
+    <div *ngFor="let user of users">
+      <mat-accordion>
+        <mat-expansion-panel class="accordion">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              User: {{ this.products.boughtItems[user].userEmail }}
+            </mat-panel-title>
+            <mat-panel-description>
+              total price:{{
+                this.products.boughtItems[user].totalPrice | currency
+              }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="productsBought" *ngFor="let item of items[user]">
+            <img
+              class="imgBought"
+              src="{{
+                this.products.boughtItems[user].items[item].product.image1
+              }}"
+              alt=""
+            />
+            <h3>
+              {{
+                this.products.boughtItems[user].items[item].product.title
+                  | title
+              }}
+            </h3>
+            <p>
+              {{
+                this.products.boughtItems[user].items[item].product.price
+                  | currency
+              }}
+            </p>
+            <p>
+              {{ this.products.boughtItems[user].items[item].items }}
+            </p>
+          </div>
+          <div class="direction">
+            <h2>Direction</h2>
+
+            <span>
+              address:{{
+                this.products.boughtItems[user].direction.address1 | json
+              }}
+            </span>
+            <span
+              *ngIf="this.products.boughtItems[user].direction.address2 != ''"
+            >
+              address 2:{{
+                this.products.boughtItems[user].direction.address2 | json
+              }}
+            </span>
+            <span>
+              apartment:{{
+                this.products.boughtItems[user].direction.apartment | json
+              }}
+            </span>
+            <span>
+              city:{{
+                this.products.boughtItems[user].direction.city | json
+              }} </span
+            >country:{{
+              this.products.boughtItems[user].direction.country | json
+            }}
+            <span>
+              postal code:{{
+                this.products.boughtItems[user].direction.postalCode | json
+              }}
+            </span>
+            <span>
+              telephone:{{
+                this.products.boughtItems[user].direction.telephone | json
+              }}
+            </span>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

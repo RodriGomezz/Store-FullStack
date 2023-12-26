@@ -1,0 +1,180 @@
+.containerCart {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  gap: 20px;
+}
+
+.card {
+  max-width: 700px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.containerImg {
+  width: 200px;
+  height: 200px;
+  display: grid;
+  place-content: center;
+}
+
+.cardImg {
+  max-width: 200px;
+  max-height: 200px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.cardTitle {
+  width: 200px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cardContent {
+  text-align: center;
+}
+
+.deliveryInfo {
+  border: 1px solid black;
+  padding: 0 20px;
+  margin: 50px;
+}
+
+.Summary {
+  text-align: center;
+  height: 330px;
+  width: 400px;
+}
+.prices {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+}
+
+.totalPrice {
+  font-size: 21px;
+  font-weight: bold;
+  padding: 15px 0;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.couponInput {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 36px;
+  text-indent: 10px;
+  padding: 0;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.btn {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: rgb(57, 206, 28);
+  color: #fff !important;
+}
+
+.productSummery {
+  grid-column: 2;
+  padding: 20px;
+  /* // margin: 50px; */
+}
+
+.arrow {
+  cursor: pointer;
+}
+
+.quantityOfItems {
+  max-width: fit-content;
+  border-radius: 12px;
+  border: 1px solid #333;
+}
+
+.arrow {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.deleteBtn {
+  background-color: #fff;
+  border: none;
+  & :hover {
+    cursor: pointer;
+    color: red;
+  }
+}
+
+.deleteAnimation {
+  animation: deleteAnimation 1s ease-in-out;
+}
+
+@keyframes deleteAnimation {
+  0% {
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: rgb(57, 206, 28) !important;
+}
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+  background-color: rgb(57, 206, 28) !important;
+}
+
+.containerForm {
+  display: flex;
+  margin: 20px 0 0 200px;
+}
+
+.formInput {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+}
+
+.doneContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.doneCenter {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 18px;
+}
+
+.doneIcon {
+  background-color: rgb(57, 206, 28);
+  border-radius: 100%;
+  color: #fff;
+}
+
+@media (max-width: 650px) {
+  .card {
+    flex-direction: column;
+  }
+}

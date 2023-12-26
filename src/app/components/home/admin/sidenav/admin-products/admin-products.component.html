@@ -1,0 +1,292 @@
+<app-sidenav></app-sidenav>
+
+<div class="adminContainer">
+  <div>
+    <div class="btnContainer">
+      <button class="btn" (click)="openAddProduct('edit')">
+        Add New Product
+      </button>
+    </div>
+    <div class="productList">
+      <div *ngIf="spinner"><app-spinner></app-spinner></div>
+      <mat-card class="card" *ngFor="let item of items">
+        <div class="productContainer" *ngIf="edit[item] != true">
+          <div class="adminBtns">
+            <button class="editBtns btn" (click)="editData(item)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="editBtns btn" (click)="disableItem(item)">
+              <mat-icon>block</mat-icon>
+            </button>
+            <button class="editBtns deleteBtn btn" (click)="deleteItem(item)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div
+            [attr.id]="'carouselExample' + item"
+            class="carousel slide carousel-fade"
+            [ngClass]="{
+              disableElement:
+                response[item].active === 'false' ||
+                response[item].active === false
+            }"
+          >
+            <div class="carousel-inner" *ngIf="response[item].image1">
+              <div class="carousel-item active containerImages">
+                <img
+                  src="{{ response[item].image1 }}"
+                  class="d-block w-100 cardImg"
+                  (click)="productDetails(item)"
+                  alt="img1"
+                />
+                <span
+                  class="disabledItem"
+                  *ngIf="
+                    response[item].active === 'false' ||
+                    response[item].active === false
+                  "
+                >
+                  Disabled Item
+                </span>
+              </div>
+              <div class="carousel-item" *ngIf="response[item].image2">
+                <img
+                  src="{{ response[item].image2 }}"
+                  class="d-block w-100 cardImg"
+                  (click)="productDetails(item)"
+                  alt="img2"
+                />
+              </div>
+              <div class="carousel-item" *ngIf="response[item].image3">
+                <img
+                  src="{{ response[item].image3 }}"
+                  class="d-block w-100 cardImg"
+                  (click)="productDetails(item)"
+                  alt="img3"
+                />
+              </div>
+            </div>
+            <button
+              *ngIf="response[item].image2 || response[item].image3"
+              class="carousel-control-prev"
+              type="button"
+              [attr.data-bs-target]="'#carouselExample' + item"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              *ngIf="response[item].image2 || response[item].image3"
+              class="carousel-control-next"
+              type="button"
+              [attr.data-bs-target]="'#carouselExample' + item"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          <mat-card-title class="cardTitle" (click)="productDetails(item)">{{
+            response[item].title | slice : 0 : 50
+          }}</mat-card-title>
+
+          <div>
+            <p>{{ response[item].description | fiveWords }}...</p>
+            <div class="ratingAndPrice">
+              <span class="price">{{ response[item].price | currency }}</span>
+              <div class="ratingContainer">
+                <span
+                  *ngFor="
+                    let starts of [].constructor(
+                      math.trunc(response[item].rating.rate)
+                    )
+                  "
+                >
+                  <mat-icon class="ratingContainer">star</mat-icon>
+                </span>
+                <span
+                  *ngIf="
+                    [].constructor(
+                      Number(response[item].rating.rate)
+                        .toString()
+                        .split('.')
+                        .splice(1, 1)
+                    ) != 0
+                  "
+                >
+                  <mat-icon class="ratingContainer">star_half</mat-icon>
+                </span>
+                <span class="countRating">{{
+                  response[item].rating.count
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit options -->
+
+        <div class="editForm" *ngIf="edit[item] === true">
+          <div mat-dialog-content>
+            <div class="d-flex justify-content-center">
+              <form #form="ngForm">
+                <div class="example-container">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Item</mat-label>
+                    <input
+                      matInput
+                      [(ngModel)]="dataProduct.title"
+                      name="item"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="example-container">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <input
+                      matInput
+                      [(ngModel)]="dataProduct.description"
+                      name="description"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="example-container">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Price</mat-label>
+                    <input
+                      matInput
+                      [(ngModel)]="dataProduct.price"
+                      name="price"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="example-container">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Image1 url</mat-label>
+                    <input
+                      matInput
+                      [(ngModel)]="dataProduct.image1"
+                      name="image"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="example-container">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Image2 url</mat-label>
+                    <input
+                      matInput
+                      [(ngModel)]="dataProduct.image2"
+                      name="image2"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="example-container">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Image3 url</mat-label>
+                    <input
+                      matInput
+                      [(ngModel)]="dataProduct.image3"
+                      name="image3"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="example-container">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Rating rate</mat-label>
+                    <input
+                      matInput
+                      [(ngModel)]="dataProduct.rating.rate"
+                      name="rate"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="example-container">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Rating count</mat-label>
+                    <input
+                      matInput
+                      [(ngModel)]="dataProduct.rating.count"
+                      name="count"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="example-container">
+                  <mat-form-field appearance="fill">
+                    <mat-label>category</mat-label>
+                    <mat-select
+                      [(ngModel)]="dataProduct.category"
+                      name="category"
+                      class="position-relative"
+                      ><mat-option value="men's clothing"
+                        >men's clothing</mat-option
+                      ><mat-option value="jewelry">jewelry</mat-option
+                      ><mat-option value="electronics">electronics</mat-option>
+                      ><mat-option value="women's clothing"
+                        >women's clothing</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="example-container">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Item active?</mat-label>
+                    <mat-select
+                      [(ngModel)]="dataProduct.active"
+                      name="active"
+                      class="position-relative"
+                      ><mat-option value="true">Yes</mat-option> ><mat-option
+                        value="false"
+                        >No</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="adminBtns" mat-dialog-actions>
+            <button
+              class="btn"
+              mat-button
+              mat-dialog-close
+              (click)="closeEdit()"
+            >
+              Close
+            </button>
+            <button
+              class="btn"
+              mat-raised-button
+              mat-dialog-close
+              cdkFocusInitial
+              color="primary"
+              (click)="editProduct()"
+              type="submit"
+              [disabled]="!form.valid"
+            >
+              Save Product
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<mat-paginator
+  class="paginator"
+  [length]="elements"
+  [pageIndex]="pageIndex"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 50, 100]"
+  aria-label="Select page"
+  (page)="handlePageEvent($event)"
+  #paginator
+>
+</mat-paginator>
