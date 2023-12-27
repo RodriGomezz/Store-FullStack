@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  UrlUser: 'http://localhost:3000',
-  UrlAdmin: 'http://localhost:4000',
+  UrlUser: 'https://user-service-kaz3.onrender.com',
+  UrlAdmin: 'https://admin-service-vp9m.onrender.com',
 };
