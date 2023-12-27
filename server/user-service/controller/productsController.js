@@ -18,7 +18,7 @@ export const productAutocomplete = async (req, res) => {
 };
 
 export const productPagination = async (req, res) => {
-  const LimitPage = Number(req.query.limit) - 1;
+  const LimitPage = Number(req.query.limit);
   const skipPage = req.query.page * LimitPage;
   const category = req.query.category;
   if (!category || category === "all") {
