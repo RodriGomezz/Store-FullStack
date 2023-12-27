@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SharedService } from '../shared.service';
 import { ProductsService } from '../../home/products/products.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { AdminProductsService } from '../../home/admin/sidenav/admin-products/admin-products.service';
 
 @Component({
   selector: 'app-navbar',
@@ -51,6 +52,7 @@ export class NavbarComponent implements OnInit {
     private sharedService: SharedService,
     private productsService: ProductsService,
     private authService: AuthService,
+    private adminProductService: AdminProductsService,
     private router: Router
   ) {
     effect(() => {
@@ -96,14 +98,15 @@ export class NavbarComponent implements OnInit {
   }
 
   searchButton() {
-    if (this.router.url != '/') {
-      this.productsService.allProducts.set(this.filteredArray);
-      if (this.router.url == '/admin/products') {
-        this.router.navigate(['admin']);
-      } else {
-        this.router.navigate(['products']);
-      }
+    if (
+      this.router.url == '/admin/products' ||
+      this.router.url == '/admin/users' ||
+      this.router.url == '/admin/sales'
+    ) {
+      this.adminProductService.allProducts.set(this.filteredArray);
+      this.router.navigate(['/admin/products']);
     } else {
+      this.router.navigate(['/']);
       this.productsService.allProducts.set(this.filteredArray);
       window.scrollTo(0, 700);
     }
