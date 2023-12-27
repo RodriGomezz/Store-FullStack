@@ -66,7 +66,6 @@
         class="signInBtn"
         type="submit"
         color="accent"
-        [disabled]="f.invalid"
       >
         SIGN IN
       </button>
@@ -171,6 +170,7 @@
         type="submit"
         mat-raised-button
         color="accent"
+        [disabled]="f.invalid"
         (click)="(onSubmit)"
       >
         SIGN UP
